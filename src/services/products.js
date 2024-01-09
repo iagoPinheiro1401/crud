@@ -12,3 +12,13 @@ export const createProduct = async (product) => {
     const createdProduct = await Product.create(product)
     return createdProduct
 }
+
+export const deleteProduct = async (id) => {
+    await databaseConnection()
+    await Product.findByIdAndDelete(id)
+}
+
+export const updateProduct = async (id, newBody) => {
+    await databaseConnection()
+    await Product.findByIdAndUpdate(id, newBody)
+}
