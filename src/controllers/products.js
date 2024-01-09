@@ -1,13 +1,17 @@
 import { Router } from "express"
 
+import { listerProducts, createProduct } from "../services/products"
+
 const router = Router()
 
-router.get('/', (req, res) => {
-    res.send('GET PRODUCTS')
+router.get('/', async (req, res) => {
+    const productList = await listerProducts()
+    res.send(productList)
 })
 
-router.post('/', (req, res) => {
-    res.send('POST PRODUCTS')
+router.post('/', async (req, res) => {
+    const product = await createProduct(req.body)
+    res.status(201).send('POST PRODUCTS')
 })
 
 router.delete('/', (req, res) => {
